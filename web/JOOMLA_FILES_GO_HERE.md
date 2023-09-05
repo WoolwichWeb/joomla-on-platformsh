@@ -1,0 +1,1 @@
+Your Joomla! files should go in this directory.

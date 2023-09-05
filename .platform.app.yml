@@ -1,0 +1,92 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The type of the application to build.
+type: 'php:8.1'
+
+# Indicate that we want to use composer2, (leave out if you want composer1)
+dependencies:
+    php: 
+        composer/composer: '^2'
+
+# The hooks that will be performed when the package is deployed.
+hooks:
+    build: |
+        set -e
+
+    deploy: |
+        set -e
+
+        ##
+        # Sync custom templates from git to Joomla's directory.
+        ##
+        for d in templates/*; do
+            [ -d "${d}" ] || continue;
+
+            # Ensure templates directories are in place in the web directory.
+            mkdir -p "web/${d}";
+
+            echo "${d}: Checking for differences between version controlled and Joomla's template."
+
+            if diff -urp "web/${d}" "${d}"; then
+                echo "No differences between ${d} in git and Joomla."
+            else
+                echo
+                echo "Syncing ${d} from git to Joomla."
+                echo
+                rsync -av --delete "${d}/" "web/${d}/"
+            fi
+        done
+
+
+    post_deploy: |
+        set -e
+        
+        ##
+        # Ensure Joomla configuration file has database details included.
+        ##
+        if ! grep -iq 'PLATFORM_RELATIONSHIPS' web/configuration.php; then
+            echo 'The Joomla! configuration file has changed, updating the configuration file with Platform SH integration.'
+            sed '/class JConfig {/r .platform/relationships_fragment.php' web/configuration.php > web/configuration_psh_update.php
+            php -l web/configuration_psh_update.php && mv web/configuration_psh_update.php web/configuration.php
+        fi
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "db:mysql"
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    'web':
+        source: local
+        source_path: web
+    'cache':
+        source: local
+        source_path: cache
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            # The public directory of the app, relative to its root.
+            root: "web"
+            # The front-controller script to send non-static requests to.
+            passthru: "/index.php"
+        
+        "/administrator":
+            root: "web/administrator"
+            passthru: "/administrator/index.php"
+        
+        "/config_platform":
+            root: "config_platform"
+            scripts: false
+            allow: false
