@@ -1,0 +1,25 @@
+version: 1
+
+info:
+  id: joomla/joomla
+  name: Joomla! 4
+  description: |
+      <p>Install Joomla! 4 on Platform.sh.</p>
+  tags:
+  - PHP
+  - CMS
+  - Joomla 
+
+  notes:
+    - heading: "Features"
+      content: |
+          Joomla! 4<br />
+          The flexible platform empowering website creators<br />
+          PHP 8.1<br />
+          MariaDB 10<br />
+          Automatic TLS certificates<br />
+initialize:
+  repository: https://gitlab.com/woolwichweb/joomla-on-platformsh@main
+  config: null
+  files: []
+  profile: PHP
