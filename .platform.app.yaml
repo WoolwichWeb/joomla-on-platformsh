@@ -48,7 +48,7 @@ hooks:
         ##
         # Ensure Joomla configuration file has database details included.
         ##
-        [ -f web/configuration.php ] || (echo "Joomla! configuration file not found, skipping configuration changes." && exit);
+        test -f web/configuration.php || { echo "Joomla! configuration file not found, skipping configuration changes."; exit 0; };
         if ! grep -iq 'PLATFORM_RELATIONSHIPS' web/configuration.php; then
             echo 'The Joomla! configuration file has changed, updating the configuration file with Platform SH integration.'
             sed '/class JConfig {/r .platform/relationships_fragment.php' web/configuration.php > web/configuration_psh_update.php

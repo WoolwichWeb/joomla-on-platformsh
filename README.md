@@ -72,7 +72,7 @@ If you already have a Joomla! site, you may use that instead (instructions for t
 Upload Joomla! and deploy it to Platform.sh:
 
 ```bash
-platform mount:upload -m web --source web -y
+platform mount:upload -m web --source . -y
 platform redeploy -y
 ```
 
