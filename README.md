@@ -17,29 +17,27 @@ This guide and template should get you started running Joomla! 4 on platform.sh.
 
 ## Instructions
 
-Create a platform.sh site, the type doesn't matter, but these instructions are based on the basic PHP template. Then clone that site onto your development machine, using git.
-
-Having cloned it, delete all the files in that new site, and replace them with the files in this template (with the exception of the `.git` directory). For example:
+Create a platform.sh site, selecting ‘Create from scratch’ on the ‘Select project type’ step. Make a note of the site id, then get the project (replace SITE_ID with the one Platform.sh gives you):
 
 ```bash
-cd INSERT_PLATFORMSH_SITE_NAME_HERE
-rm -r .platform .platform.app.yaml .lando.upstream.yml src web # Plus any other files (but keep .git).
+platform get SITE_ID
 ```
 
-Then clone this template repository:
+The above command should be on the Platform.sh project page. When run, it should ask which directory to put the site into, make a note of the directory name you chose.
+
+Then clone this template repository and copy its contents into your new project:
 
 ```bash
-cd .. # Move out of your project directory
 git clone https://gitlab.com/woolwichweb/joomla-on-platformsh.git
 
 # Copy the files from the 'Joomla! on Platform.sh' template into your project directory.
-cp -r joomla-on-platformsh/{.platform,.platform.app.yml,templates,web,.gitignore,README.md,php.ini} INSERT_PLATFORMSH_SITE_NAME_HERE/
+cp -r joomla-on-platformsh/{.platform,.platform.app.yml,templates,web,.gitignore,php.ini} PLATFORM_SH_SITE_DIR/
 ```
 
 If you have a custom Joomla! template, put it in the `templates` directory. For example, if you have a template called `my_template`, your directory structure would look like this:
 
 ```
--- INSERT_PLATFORMSH_SITE_NAME_HERE/
+-- PLATFORM_SH_SITE_DIR/
     |__ templates/
         |__ my_template/
             |__ index.php
@@ -50,10 +48,10 @@ If you have a custom Joomla! template, put it in the `templates` directory. For 
 Finally, commit the template and push to Platform.sh using git:
 
 ```bash
-cd INSERT_PLATFORMSH_SITE_NAME_HERE
+cd PLATFORM_SH_SITE_DIR
 git add .
-git commit -m "Initial commit of Platform.sh template for Joomla!"
-git push
+git commit -m "Initial commit of my Joomla! site."
+platform push
 ```
 
 Note: this will not make a working site, yet.
@@ -92,7 +90,7 @@ If you need to copy a custom template from Joomla! to version control:
 
 ```bash
 platform mount:download --mount web --target web -y
-rsync -av --delete web/templates/INSERT_TEMPLATE_NAME_HERE/ templates/INSERT_TEMPLATE_NAME_HERE/
+rsync -av --delete web/templates/TEMPLATE_NAME/ templates/TEMPLATE_NAME/
 git add templates
 git commit -m "Update custom template."
 ```
