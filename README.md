@@ -50,7 +50,7 @@ If you have a custom Joomla! template, put it in the `templates` directory. For 
 Finally, commit the template and push to Platform.sh using git:
 
 ```bash
-cp INSERT_PLATFORMSH_SITE_NAME_HERE
+cd INSERT_PLATFORMSH_SITE_NAME_HERE
 git add .
 git commit -m "Initial commit of Platform.sh template for Joomla!"
 git push
@@ -78,8 +78,21 @@ platform mount:upload -m web --source web -y
 platform redeploy -y
 ```
 
+Finished! You may visit your new Joomla! site hosted on Platform.sh.
+
+### Other instructions
+
 When Joomla! updates itself, you can download the changes using this command:
 
 ```bash
 platform mount:download --mount web --target web -y
+```
+
+If you need to copy a custom template from Joomla! to version control:
+
+```bash
+platform mount:download --mount web --target web -y
+rsync -av --delete web/templates/INSERT_TEMPLATE_NAME_HERE/ templates/INSERT_TEMPLATE_NAME_HERE/
+git add templates
+git commit -m "Update custom template."
 ```
