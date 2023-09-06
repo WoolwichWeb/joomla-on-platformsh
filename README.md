@@ -31,7 +31,7 @@ Then clone this template repository and copy its contents into your new project:
 git clone https://gitlab.com/woolwichweb/joomla-on-platformsh.git
 
 # Copy the files from the 'Joomla! on Platform.sh' template into your project directory.
-cp -r joomla-on-platformsh/{.platform,.platform.app.yml,templates,web,.gitignore,php.ini} PLATFORM_SH_SITE_DIR/
+cp -r joomla-on-platformsh/{.platform,.platform.app.yaml,templates,web,.gitignore,php.ini} PLATFORM_SH_SITE_DIR/
 ```
 
 If you have a custom Joomla! template, put it in the `templates` directory. For example, if you have a template called `my_template`, your directory structure would look like this:
