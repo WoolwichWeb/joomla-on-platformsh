@@ -20,35 +20,21 @@ hooks:
     deploy: |
         set -e
 
-        ##
         # Sync custom templates from git to Joomla's directory.
-        ##
-        for d in templates/*; do
-            [ -d "${d}" ] || continue;
+        bash $PLATFORM_APP_DIR/bin/sync_templates.sh
 
-            # Ensure templates directories are in place in the web directory.
-            mkdir -p "web/${d}";
-
-            echo "${d}: Checking for differences between version controlled and Joomla's template."
-
-            if diff -urp "web/${d}" "${d}"; then
-                echo "No differences between ${d} in git and Joomla."
-            else
-                echo
-                echo "Syncing ${d} from git to Joomla."
-                echo
-                rsync -av --delete "${d}/" "web/${d}/"
-            fi
-        done
+        # Check if Joomla! is installed. Then install it if necessary.
+        test -d web/installation && test ! -f web/configuration.php && $PLATFORM_APP_DIR/bin/install_joomla.sh;
 
 
     post_deploy: |
         set -e
+
+        test -f web/configuration.php || { echo "Joomla! configuration file not found, skipping configuration changes."; exit 0; };
         
         ##
         # Ensure Joomla configuration file has database details included.
         ##
-        test -f web/configuration.php || { echo "Joomla! configuration file not found, skipping configuration changes."; exit 0; };
         if ! grep -iq 'PLATFORM_RELATIONSHIPS' web/configuration.php; then
             echo 'The Joomla! configuration file has changed, updating the configuration file with Platform SH integration.'
             sed '/class JConfig {/r .platform/relationships_fragment.php' web/configuration.php > web/configuration_psh_update.php
