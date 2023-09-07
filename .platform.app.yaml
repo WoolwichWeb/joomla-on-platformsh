@@ -23,8 +23,8 @@ hooks:
         # Sync custom templates from git to Joomla's directory.
         bash $PLATFORM_APP_DIR/bin/sync_templates.sh
 
-        # Check if Joomla! is installed. Then install it if necessary.
-        test -d web/installation && test ! -f web/configuration.php && $PLATFORM_APP_DIR/bin/install_joomla.sh;
+        # Install Joomla if necessary.
+        bash $PLATFORM_APP_DIR/bin/install_joomla.sh;
 
 
     post_deploy: |

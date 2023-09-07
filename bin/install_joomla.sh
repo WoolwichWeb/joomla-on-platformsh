@@ -17,44 +17,49 @@ db_name=$(echo $rels | jq -r ".database[0].path")
 admin_pass=$(head -c 16 /dev/urandom | base64)
 admin_url=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r '.[] | select( .type == "upstream" ).production_url')
 
+# Installation must be done from within the web root.
+cd web
+
 # Download Joomla! to the web directory, if necessary.
-if test -f web/JOOMLA_FILES_GO_HERE.md && test ! -f web/index.php; then
-    wget -q "${joomla_download_url}" -O joomla.zip && unzip -n -d web joomla.zip
-    rm joomla.zip web/JOOMLA_FILES_GO_HERE.md
+if test -f JOOMLA_FILES_GO_HERE.md && test ! -f index.php; then
+    wget -q "${joomla_download_url}" -O joomla.zip && unzip -q -n joomla.zip
+    rm joomla.zip JOOMLA_FILES_GO_HERE.md
 fi
 
 # Perform Joomla's automated installation.
 # Note: the installer deletes itself after running successfully, so it is
 # safe to run this on an installed site without any environment checks.
-cd web
-php installation/joomla.php install \
-    --no-interaction \
-    --db-host=$db_host \
-    --db-user=$db_user \
-    --db-pass=$db_pass \
-    --db-name=$db_name \
-    --db-prefix=jos_ \
-    --db-type=mysql \
-    --admin-user=admin \
-    --admin-username=admin \
-    --admin-password="${admin_pass}" \
-    --admin-email=admin@example.com \
-    --site-name="My Joomla Site"
+if test -d installation && test ! -f configuration.php; then
+    php installation/joomla.php install \
+        --no-interaction \
+        --db-host=$db_host \
+        --db-user=$db_user \
+        --db-pass=$db_pass \
+        --db-name=$db_name \
+        --db-prefix=jos_ \
+        --db-type=mysql \
+        --admin-user=admin \
+        --admin-username=admin \
+        --admin-password="${admin_pass}" \
+        --admin-email=admin@example.com \
+        --site-name="My Joomla Site"
 
-# Enable URL rewriting.
-sed -i 's/public $sef_rewrite = false;/public $sef_rewrite = true;/' configuration.php \
-  && echo "URL rewriting enabled." \
-  && echo
+    # Enable URL rewriting.
+    sed -i 's/public $sef_rewrite = false;/public $sef_rewrite = true;/' configuration.php \
+    && echo "URL rewriting enabled." \
+    && echo
 
-echo "======================================================="
-echo
-echo "Username: admin"
-echo "Password: ${admin_pass}"
-echo
-echo "Log in here:"
-echo "${admin_url}administrator"
-echo
-echo "Note: the admin user's e-mail is temporarily set to '${admin_email}'"
-echo "Please log in at the address above, and change it."
-echo
-echo "======================================================="
+    # Instructions for the user.
+    echo "======================================================="
+    echo
+    echo "Username: admin"
+    echo "Password: ${admin_pass}"
+    echo
+    echo "Log in here:"
+    echo "${admin_url}administrator"
+    echo
+    echo "The admin user's e-mail is temporarily set to '${admin_email}'"
+    echo "Please log in and change it at the address above."
+    echo
+    echo "======================================================="
+fi
