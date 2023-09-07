@@ -4,7 +4,7 @@ This guide and template should get you started running Joomla! 4 on Platform.sh.
 
 This template is maintained by [Woolwich Web Works](https://www.woolwichweb.works). We normally work with Drupal, Haskell, and PureScript; so if you need your Joomla! site converted to Drupal, or would like to work with us on other Web projects, [get in touch!](https://www.woolwichweb.works/contact)
 
-This template is unofficial and not supported by the Joomla! project.
+This template is unofficial and not supported or endorsed by the Joomla! project.
 
 ## Features
 
