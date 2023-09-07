@@ -22,13 +22,13 @@ This template is unofficial and not supported or endorsed by the Joomla! project
 
 ## Instructions
 
-Create a platform.sh site, selecting ‘Create from scratch’ on the ‘Select project type’ step. Make a note of the site id, then get the project (replace SITE_ID with the one Platform.sh gives you):
+Create a platform.sh site, selecting ‘Create from scratch’ on the ‘Select project type’ step. Then get the project (replace SITE_ID with the one Platform.sh gives you):
 
 ```bash
 platform get SITE_ID
 ```
 
-The above command should be on the Platform.sh page for this project. When run, it should ask which directory to put the site into, make a note of the directory name you choose.
+The above command, including `SITE_ID`, should be on the Platform.sh page for this project. When run, it will ask which directory to put the site into, make a note of the directory name you choose.
 
 Then clone this template repository and copy its contents into your new project:
 
@@ -76,7 +76,7 @@ Precisely because the password is printed in plain text in the Platform.sh logs,
 You may now download the provisioned Joomla! code to your local development machine:
 
 ```bash
-platform mount:upload --mount web --target web -y
+platform mount:download --mount web --target web -y
 ```
 
 
