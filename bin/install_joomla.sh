@@ -21,9 +21,9 @@ admin_url=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r '.[] | select( .type
 cd web
 
 # Download Joomla! to the web directory, if necessary.
-if test -f JOOMLA_FILES_GO_HERE.md && test ! -f index.php; then
+if ! find . -mindepth 1 -maxdepth 1 | read then
     wget -q "${joomla_download_url}" -O joomla.zip && unzip -q -n joomla.zip
-    rm joomla.zip JOOMLA_FILES_GO_HERE.md
+    rm joomla.zip
 fi
 
 # Perform Joomla's automated installation.
@@ -46,8 +46,8 @@ if test -d installation && test ! -f configuration.php; then
 
     # Enable URL rewriting.
     sed -i 's/public $sef_rewrite = false;/public $sef_rewrite = true;/' configuration.php \
-    && echo "URL rewriting enabled." \
-    && echo
+        && echo "URL rewriting enabled." \
+        && echo
 
     # Instructions for the user.
     echo "======================================================="

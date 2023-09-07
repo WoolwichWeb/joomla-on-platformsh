@@ -52,7 +52,7 @@ If you have a custom Joomla! template, put it in the `templates` directory. For 
 
 Finally, commit the changes and push the project to Platform.sh.
 
-This next step will download and install Joomla on the Platform.sh environment, if you would prefer to setup Joomla yourself, run `platform ssh touch web/index.php` before the next step. For example, if you already have a Joomla! site, you may wish to use the code from that (instructions for that are outside the scope of this document).
+This next step will download and install Joomla on the Platform.sh environment. If you already have a Joomla! site, you may wish to use that site's code. While instructions for using custom code are outside the scope of this document, it should be possible to achieve by commenting out any unwanted steps in `.platform.app.yaml`.
 
 ```bash
 cd PLATFORM_SH_SITE_DIR
@@ -61,15 +61,9 @@ git commit -m "Initial commit of my Joomla! site."
 platform push -y
 ```
 
-Clean up, and make sure the installer does not try to run again:
-
-```bash
-platform ssh rm web/JOOMLA_FILES_GO_HERE.md
-```
-
 ### Finished!
 
-The installer will print the admin username, password and URL to access the admin area of your new site. If you need those details again, they will be in the Platform.sh logs (accessible through your console).
+The installer will print the admin username, password and URL for your new site. If you need those details again, they will be in the Platform.sh logs (accessible through your console).
 
 Precisely because the password is printed in plain text in the Platform.sh logs, changing it immediately is highly recommended!
 
@@ -78,8 +72,6 @@ You may now download the provisioned Joomla! code to your local development mach
 ```bash
 platform mount:download --mount web --target web -y
 ```
-
-
 
 ### Other instructions
 
@@ -97,7 +89,7 @@ git commit -m "Update TEMPLATE_NAME custom template."
 platform push
 ```
 
-This will keep a history of all the important changes to your Joomla! site.
+This will keep a history of all the important changes to your Joomla! site's templates.
 
 *Important Note*: templates in version control (`/templates`) will always overwrite those in `/web/templates`.
 

@@ -2,4 +2,3 @@ vendor/*
 
 # Ignore mounts
 /web/*
-!/web/JOOMLA_FILES_GO_HERE.md
