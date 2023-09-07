@@ -2,7 +2,7 @@
 
 This guide and template should get you started running Joomla! 4 on Platform.sh.
 
-This template is maintained by [Woolwich Web Works](https://www.woolwichweb.works). We normally work with Drupal, Haskell, and PureScript; so if you need your Joomla! site converted to Drupal, or would like to work with us on other Web projects, [get in touch!](https://www.woolwichweb.works/contact)
+This template is maintained by [Woolwich Web Works](https://www.woolwichweb.works). We specialise in Web technologies like: Drupal (and other Symfony based frameworks), Haskell, PureScript, and CSS.
 
 This template is unofficial and not supported or endorsed by the Joomla! project.
 
@@ -15,9 +15,9 @@ This template is unofficial and not supported or endorsed by the Joomla! project
 
 ## Requirements
 
-* Command line
+* A command line, such as Bash or zsh
 * Some devops experience, or desire to learn
-* The `platform` command-line tool
+* The `platform` command line tool
 * Git
 
 ## Instructions
@@ -36,7 +36,7 @@ Then clone this template repository and copy its contents into your new project:
 git clone https://gitlab.com/woolwichweb/joomla-on-platformsh.git
 
 # Copy the template files into your project directory.
-cp -r joomla-on-platformsh/{.platform,.platform.app.yaml,templates,web,bin,.gitignore,php.ini} PLATFORM_SH_SITE_DIR/
+cp -r joomla-on-platformsh/{.platform,.platform.app.yaml,templates,bin,.gitignore,php.ini} PLATFORM_SH_SITE_DIR/
 ```
 
 If you have a custom Joomla! template, put it in the `templates` directory. For example, if you have a template called `my_template`, your directory structure would look like this:
