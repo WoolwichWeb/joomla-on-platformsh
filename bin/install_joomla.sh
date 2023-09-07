@@ -20,12 +20,6 @@ admin_url=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r '.[] | select( .type
 # Installation must be done from within the web root.
 cd web
 
-# Download Joomla! to the web directory, if necessary.
-if ! find . -mindepth 1 -maxdepth 1 | read then
-    wget -q "${joomla_download_url}" -O joomla.zip && unzip -q -n joomla.zip
-    rm joomla.zip
-fi
-
 # Perform Joomla's automated installation.
 # Note: the installer deletes itself after running successfully, so it is
 # safe to run this on an installed site without any environment checks.

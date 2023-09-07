@@ -20,10 +20,13 @@ hooks:
     deploy: |
         set -e
 
+        # Download Joomla.
+        bash $PLATFORM_APP_DIR/bin/download_joomla.sh;
+
         # Sync custom templates from git to Joomla's directory.
         bash $PLATFORM_APP_DIR/bin/sync_templates.sh
 
-        # Install Joomla if necessary.
+        # Install Joomla.
         bash $PLATFORM_APP_DIR/bin/install_joomla.sh;
 
 
