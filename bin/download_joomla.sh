@@ -1,5 +1,7 @@
 #!/bin/bash
-set -e
+set -e -x
+
+joomla_download_url='https://downloads.joomla.org/cms/joomla4/4-3-4/Joomla_4-3-4-Stable-Full_Package.zip?format=zip'
 
 cd web
 

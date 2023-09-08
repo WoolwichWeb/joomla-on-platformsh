@@ -6,7 +6,6 @@ set -e
 ##
 
 admin_email='admin@example.com'
-joomla_download_url='https://downloads.joomla.org/cms/joomla4/4-3-4/Joomla_4-3-4-Stable-Full_Package.zip?format=zip'
 
 # Decode database and other variables from the Platform.sh environment.
 rels=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode);
@@ -44,16 +43,19 @@ if test -d installation && test ! -f configuration.php; then
         && echo
 
     # Instructions for the user.
-    echo "======================================================="
+    echo "                            ╔═══════════════════════╗"
+    echo "| ========================  ║ YOUR NEW JOOMLA! SITE ║  ========================"
+    echo "|                           ╚═══════════════════════╝"
+    echo "|"
+    echo "|    Username: admin"
+    echo "|    Password: ${admin_pass}"
+    echo "|"
+    echo "|    Log in here:"
+    echo "|    ${admin_url}administrator"
+    echo "|"
+    echo "|    The admin user's e-mail is temporarily set to '${admin_email}'"
+    echo "|    Please log in and change it at the address above."
+    echo "|"
+    echo "| ============================================================================="
     echo
-    echo "Username: admin"
-    echo "Password: ${admin_pass}"
-    echo
-    echo "Log in here:"
-    echo "${admin_url}administrator"
-    echo
-    echo "The admin user's e-mail is temporarily set to '${admin_email}'"
-    echo "Please log in and change it at the address above."
-    echo
-    echo "======================================================="
 fi
