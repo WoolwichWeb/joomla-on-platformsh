@@ -43,19 +43,19 @@ if test -d installation && test ! -f configuration.php; then
         && echo
 
     # Instructions for the user.
-    echo "                            ╔═══════════════════════╗"
-    echo "| ========================  ║ YOUR NEW JOOMLA! SITE ║  ========================"
-    echo "|                           ╚═══════════════════════╝"
-    echo "|"
-    echo "|    Username: admin"
-    echo "|    Password: ${admin_pass}"
-    echo "|"
-    echo "|    Log in here:"
-    echo "|    ${admin_url}administrator"
-    echo "|"
-    echo "|    The admin user's e-mail is temporarily set to '${admin_email}'"
-    echo "|    Please log in and change it at the address above."
-    echo "|"
-    echo "| ============================================================================="
+    echo "                        ╔═══════════════════════╗"
+    echo "| ====================  ║ YOUR NEW JOOMLA! SITE ║  ====================|"
+    echo "|                       ╚═══════════════════════╝                      |"
+    echo "|                                                                      |"
+    echo "|    Username: admin                                                   |"
+    echo "|    Password: ${admin_pass}                                           |"
+    echo "|                                                                      |"
+    echo "|    Log in here:                                                      |"
+    echo "|    ${admin_url}administrator                                         |"
+    echo "|                                                                      |"
+    echo "|    The admin user's e-mail is temporarily set to '${admin_email}'    |"
+    echo "|    Please log in and change it at the address above.                 |"
+    echo "|                                                                      |"
+    echo "| =====================================================================|"
     echo
 fi
