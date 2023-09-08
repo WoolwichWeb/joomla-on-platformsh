@@ -22,15 +22,15 @@ This template is unofficial and not supported or endorsed by the Joomla! project
 
 ## Instructions
 
-Create a platform.sh site, selecting ‘Create from scratch’ on the ‘Select project type’ step. Then get the project (replace SITE_ID with the one Platform.sh gives you):
+Create a platform.sh site, selecting ‘Create from scratch’ on the ‘Select project type’ step. Then run this command to get the project (replacing SITE_ID with the one Platform.sh gives you):
 
 ```bash
 platform get SITE_ID
 ```
 
-The above command, including `SITE_ID`, should be on the Platform.sh page for this project. When run, it will ask which directory to put the site into, make a note of the directory name you choose.
+The above command, including `SITE_ID`, can be found on the Platform.sh console, on the page for your project. When run, it will ask which directory to put the site into, make a note of the directory name you choose.
 
-Then clone this template repository and copy its contents into your new project:
+Then clone this template repository, and copy its contents into your new project (changing `PLATFORM_SH_SITE_DIR` to match the directory you noted above):
 
 ```bash
 git clone https://gitlab.com/woolwichweb/joomla-on-platformsh.git
@@ -63,9 +63,9 @@ platform push -y
 
 ### Finished!
 
-The installer will print the admin username, password and URL for your new site. If you need those details again, they will be in the Platform.sh logs (accessible through your console).
+The installer will print the admin username, password and URL for your new site. If you need those details again, they will be in the deployment logs on Platform.sh (accessible through the console page for your project).
 
-Precisely because the password is printed in plain text in the Platform.sh logs, changing it immediately is highly recommended!
+Precisely because the password is printed in plain text in the Platform.sh logs, changing it is highly recommended!
 
 You may now download the provisioned Joomla! code to your local development machine:
 
