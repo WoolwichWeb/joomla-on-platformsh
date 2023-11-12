@@ -1,6 +1,6 @@
 # Joomla! on Platform.sh
 
-This guide and template should get you started running Joomla! 4 on Platform.sh.
+This guide and template should get you started running Joomla! 5 on Platform.sh.
 
 This template is maintained by [Woolwich Web Works](https://www.woolwichweb.works). We specialise in Web technologies like Drupal (and other Symfony based frameworks), Haskell, PureScript, and CSS.
 
@@ -8,7 +8,7 @@ This template is unofficial and not supported or endorsed by the Joomla! project
 
 ## Features
 
-* Provisions a new Joomla! 4 site automatically
+* Provisions a new Joomla! 5 site automatically
 * Allows Joomla! write access to its files, so self-update works
 * Keeps templates in version control, and syncs them into Joomla! during deployments
 * Integrates with Platform's configuration system for database access
