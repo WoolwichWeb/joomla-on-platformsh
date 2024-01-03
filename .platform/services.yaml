@@ -1,5 +1,5 @@
 # This file defines services you want available to your application.
 
 db:
-    type: mariadb:11
+    type: mariadb:11.2
     disk: 2048
