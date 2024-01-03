@@ -30,7 +30,7 @@ platform get SITE_ID
 
 The above command, including `SITE_ID`, can be found on the Platform.sh console, on the page for your project. When run, it will ask which directory to put the site into, make a note of the directory name you choose.
 
-Then clone this template repository, and copy its contents into your new project (changing `PLATFORM_SH_SITE_DIR` to match the directory you noted above):
+Then run the following to clone this template repository, and copy its contents into your new project (change `PLATFORM_SH_SITE_DIR` to match the directory you noted above):
 
 ```bash
 git clone https://gitlab.com/woolwichweb/joomla-on-platformsh.git
@@ -41,7 +41,7 @@ cp -r joomla-on-platformsh/{.platform,.platform.app.yaml,templates,bin,.gitignor
 
 If you have a custom Joomla! template, put it in the `templates` directory. For example, if you have a template called `my_template`, your directory structure would look like this:
 
-```
+```text
 -- PLATFORM_SH_SITE_DIR/
     |__ templates/
         |__ my_template/
@@ -61,7 +61,7 @@ git commit -m "Initial commit of my Joomla! site."
 platform push -y
 ```
 
-### Finished!
+### Finished
 
 The installer will print the admin username, password and URL for your new site. If you need those details again, they will be in the deployment logs on Platform.sh (accessible through the console page for your project).
 
