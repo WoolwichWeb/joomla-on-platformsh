@@ -50,9 +50,9 @@ If you have a custom Joomla! template, put it in the `templates` directory. For 
             |__ ... other files ...
 ```
 
-Finally, commit the changes and push the project to Platform.sh.
+The next step is to commit the changes and push the project to Platform.sh.
 
-This next step will download and install Joomla on the Platform.sh environment. If you already have a Joomla! site, you may wish to use that site's code. While instructions for using custom code are outside the scope of this document, it should be possible to achieve by commenting out any unwanted steps in `.platform.app.yaml`.
+The following commands will download and install Joomla on the Platform.sh environment. If you already have a Joomla! site, you may wish to use that site's code. While instructions for using custom code are outside the scope of this document, it should be possible to achieve by commenting out any unwanted steps in `.platform.app.yaml`.
 
 ```bash
 cd PLATFORM_SH_SITE_DIR
@@ -64,6 +64,40 @@ platform push -y
 ### Finished
 
 The installer will print the admin username, password and URL for your new site. If you need those details again, they will be in the deployment logs on Platform.sh (accessible through the console page for your project).
+
+`platform push -y` should print something like:
+
+```bash
+          Install Joomla
+          ==============
+          
+          Checking system requirements...OK
+          Collecting configuration...OK
+          Validating DB connection...OK
+          Creating and populating the database...OK
+          Writing configuration.php and additional setup ...OK
+          Deleting /installation folder...OK
+          
+           [OK] Joomla has been installed                                                 
+          
+          URL rewriting enabled.
+          
+                                    ╔═══════════════════════╗
+            ======================  ║ YOUR NEW JOOMLA! SITE ║  ====================== 
+                                    ╚═══════════════════════╝                         
+                                                                                      
+               Username: admin                                                        
+               Password: tofYQtnqMO1a/nQwLerzDA==                                                
+                                                                                      
+               Log in here:                                                           
+               https://main-abc123-zxcvb0987.ca-1.platformsh.site/administrator                                              
+                                                                                      
+               The admin user's e-mail is temporarily set to 'admin@example.com'         
+               Please log in and change it at the address above.                      
+                                                                                      
+            ========================================================================= 
+          
+```
 
 Precisely because the password is printed in plain text in the Platform.sh logs, changing it is highly recommended!
 
