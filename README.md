@@ -20,6 +20,10 @@ This template is unofficial and not supported or endorsed by the Joomla! project
 * The `platform` command line tool
 * Git
 
+### Looking at this on Github?
+
+Development happens on [Gitlab](https://gitlab.com/woolwichweb/joomla-on-platformsh).
+
 ## Instructions
 
 Create a platform.sh site, selecting ‘Create from scratch’ on the ‘Select project type’ step. Then run this command to get the project (replacing SITE_ID with the one Platform.sh gives you):
