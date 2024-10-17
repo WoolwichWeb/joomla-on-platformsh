@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e -x
 
-joomla_download_url='https://downloads.joomla.org/cms/joomla5/5-1-4/Joomla_5-1-4-Stable-Full_Package.zip?format=zip'
+joomla_download_url='https://downloads.joomla.org/cms/joomla5/5-2-0/Joomla_5-2-0-Stable-Full_Package.zip?format=zip'
 
 cd web
 
